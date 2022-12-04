@@ -16,14 +16,15 @@ namespace MPP4.Files
             Console.WriteLine("Second method");
         }
 
-        public void ThirdMethod(int a)
+    }
+    public class Class4
+    {
+
+        public void FirstMethod()
         {
-            Console.WriteLine("Third method (int)");
+            Console.WriteLine("First method");
         }
 
-        public void ThirdMethod(double a)
-        {
-            Console.WriteLine("Third method (double)");
-        }
+       
     }
 }

@@ -1,40 +1,39 @@
 ﻿using System;
 using System.ComponentModel;
+using System.IO;
 using System.Threading.Tasks.Dataflow;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
+using TestGeneratorLib;
 
 namespace MPP4
 {
 
     class Program
     {
-        static void Main(string[] args)
+
+        static async Task Main()
         {
-            string path = @"D:\Учеба\3_курс\СПП\MPP4\MPP4\Files";
-            string resultPath = @"D:\Учеба\3_курс\СПП\MPP4\ResultTests\";
-
-            List<string> pathes = new List<string>(Directory.GetFiles(path));
-            Pipeline pipeline = new Pipeline();
-            List<IEnumerable<PipeItem>> items = new List<IEnumerable<PipeItem>>();
+            await Method1();
+        }
 
 
-            for (int i = 0; i < pathes.Count; i += 2)
+        public static async Task Method1()
+        {
+            string path = @"D:\\Учеба\\3_курс\\СПП\\MPP4\\MPP4\\Files";
+            string resultPath = @"D:\\Учеба\\3_курс\\СПП\\MPP4\\TestProject\\ResultTests";
+
+            var classFiles = new List<string>();
+            foreach (string Onefile in Directory.GetFiles(path, "*.cs"))
             {
-                items.Add(pathes.GetRange(i, Math.Min(2, pathes.Count - i)).Select(x => new PipeItem(x)));
+                classFiles.Add(Onefile);
             }
-
-            foreach (IEnumerable<PipeItem> item in items)
-            {
-                var read = new TransformBlock<PipeItem[], PipeItem[]>(Pipeline.Read);
-                var generate = new TransformBlock<PipeItem[], PipeItem[]>(Pipeline.Generate);
-                var write = new ActionBlock<PipeItem[]>(Pipeline.Write);
-
-                read.Post(item.ToArray());
-                read.Complete();
-
-            }
+             int maxFilesToLoad = 3;
+             int maxExecuteTasks = 3;
+             int maxFilesToWrite = 3;
+        TestGenerator generator = new TestGenerator(classFiles, resultPath, maxFilesToLoad, maxExecuteTasks, maxFilesToWrite);
+            await generator.Generate();
 
 
         }

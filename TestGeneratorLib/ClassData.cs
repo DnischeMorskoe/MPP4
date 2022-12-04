@@ -12,10 +12,10 @@ namespace TestGeneratorLib
         public string Name { get; }
         public List<MethodData> Methods { get; }
 
-        public ClassData(string name, IEnumerable<MethodData> methods)
+        public ClassData(string name, List<MethodData> methods)
         {
             Name = name;
-            Methods = new List<MethodData>(methods);
+            Methods = methods;
         }
 
     }

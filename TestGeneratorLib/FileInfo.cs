@@ -6,16 +6,15 @@ using System.Threading.Tasks;
 
 namespace TestGeneratorLib
 {
-    public class NamespaceData
+    public class FileInfo
     {
         public string Name { get; set; }
-        public List<ClassData> Classes { get; set; }
+        public string Code { get; set; }
 
-        public NamespaceData(string name, List<ClassData> classes)
+        public FileInfo(string name, string code)
         {
             Name = name;
-            Classes = classes;
+            Code = code;
         }
-
     }
 }
