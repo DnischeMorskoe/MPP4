@@ -23,7 +23,7 @@ namespace TestGeneratorLib
                 foreach (var innerClass in ns.Classes)
                 {
                     var generatedClassDeclaration = GenerateClassDeclaration(innerClass);
-                    string fileName =  innerClass.Name +".cs";
+                    string fileName = ns.Name+ "_" +innerClass.Name +".cs";
                     string fileContent = generatedUsingsDeclaration.NormalizeWhitespace().ToFullString()
                         + "\r\n"
                         + generatedNsDeclaration.WithMembers(generatedClassDeclaration).NormalizeWhitespace().ToFullString();

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MPP4.Files
+namespace Class2
 {
     public class Class2
     {

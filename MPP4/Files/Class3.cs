@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace MPP4.Files
+namespace Class3
 {
     public class Class3
     {

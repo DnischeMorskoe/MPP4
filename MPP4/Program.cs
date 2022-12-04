@@ -35,7 +35,7 @@ namespace MPP4
         TestGenerator generator = new TestGenerator(classFiles, resultPath, maxFilesToLoad, maxExecuteTasks, maxFilesToWrite);
             await generator.Generate();
 
-
+            Console.WriteLine("END");
         }
     }
 
